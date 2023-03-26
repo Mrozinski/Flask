@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Dane Firmy {% endblock %}
+{% block content %} 
+<table>
+    <tbody>
+    {% for key, value in dane.items() %}
+     <tr>
+         <td> {{ key }} </td>
+         <td> {{ value }} </td>
+     </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+<form method="post">
+    <p><input type="submit" value="submit"/></p> 
+    <p><input type="date" value={{d}}></p>
+</form>
+{% endblock %}
