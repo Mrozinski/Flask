@@ -30,15 +30,17 @@ def dodaj():
     dane.append(ulica)
     numer = request.args.get('numer', None)
     dane.append(numer)
+    data = request.args.get('data', None)
     dodaj_kon(dane)
-    return f"Dodaje ... {nazwa}, {nip}, {regon}, {miejscowosc}, {ulica}, {numer}"
+    return f"Dodaje ... {nazwa}, {nip}, {regon}, {miejscowosc}, {ulica}, {numer}, {data}"
 
 @app.route("/danefirmy", methods=["POST", "GET"])
 def danefirmy():
     nip = request.args.get('nip', None)
     dane = pobierz_dane(nip)
     if request.method=="POST":
-       return redirect(url_for("dodaj", nazwa=dane['Nazwa'], nip=dane['Nip'], regon= dane['Regon'], gmina=dane['Gmina'], miejscowosc=dane['Miejscowosc'], kod=dane['KodPocztowy'], ulica=dane['Ulica'], numer=dane['NrNieruchomosci']))
+       data = request.form["d"]
+       return redirect(url_for("dodaj", nazwa=dane['Nazwa'], nip=dane['Nip'], regon= dane['Regon'], gmina=dane['Gmina'], miejscowosc=dane['Miejscowosc'], kod=dane['KodPocztowy'], ulica=dane['Ulica'], numer=dane['NrNieruchomosci'],data=data))
     else:
        return render_template("danef.html", dane=dane, d = datetime.today().strftime('%Y-%m-%d'))
 
