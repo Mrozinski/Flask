@@ -2,6 +2,8 @@ from flask import Flask, redirect, url_for, render_template, request
 import pandas as pd
 from dane import pobierz_dane
 from dane import dodaj_kon
+from dane import pobierz_kontr 
+from dane import POLA_DO_ZAPISU_KONT
 from datetime import datetime
 
 app = Flask(__name__)
@@ -10,6 +12,11 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return render_template("index.html")
+
+@app.route("/kontrahenci")
+def kontraheci():
+    dane = pobierz_kontr()
+    return render_template("kontrahenci.html", dane = dane, nagl = POLA_DO_ZAPISU_KONT)
 
 @app.route("/dodaj")
 def dodaj():
@@ -31,8 +38,9 @@ def dodaj():
     numer = request.args.get('numer', None)
     dane.append(numer)
     data = request.args.get('data', None)
+    dane.append(data)
     dodaj_kon(dane)
-    return f"Dodaje ... {nazwa}, {nip}, {regon}, {miejscowosc}, {ulica}, {numer}, {data}"
+    return render_template("dodanof.html", nazwa=dane[0], nip = dane[1])
 
 @app.route("/danefirmy", methods=["POST", "GET"])
 def danefirmy():
@@ -44,13 +52,13 @@ def danefirmy():
     else:
        return render_template("danef.html", dane=dane, d = datetime.today().strftime('%Y-%m-%d'))
 
-@app.route("/login", methods=["POST", "GET"])
+@app.route("/dodajfirme", methods=["POST", "GET"])
 def login():
     if request.method=="POST":
         user = request.form["nm"]
         return redirect(url_for("danefirmy", nip=user))
     else:
-        return render_template("login.html")
+        return render_template("dodajfirme.html")
 
 @app.route("/<usr>")
 def user(usr):

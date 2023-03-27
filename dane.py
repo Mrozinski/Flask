@@ -1,9 +1,14 @@
 from RegonAPI import RegonAPI
 from RegonAPI.exceptions import ApiAuthenticationError
+import pandas as pd
 
-K_FILE = "k_file.csv"
+K_FILE = "dane\k_file.csv"
 F_file = "f_file.csv"
-POLA_DO_ZAPISU_KONT = ['Nazwa', 'Nip', 'Regon','Gmina' , 'Miejscowosc', 'KodPocztowy', 'Ulica', 'NrNieruchomosci']
+POLA_DO_ZAPISU_KONT = ['Nazwa', 'Nip', 'Regon','Gmina' , 'Miejscowosc', 'KodPocztowy', 'Ulica', 'NrNieruchomosci', 'data_dodania']
+
+def pobierz_kontr():
+    dane = pd.read_csv(K_FILE, sep=";")
+    return dane.values 
 
 def dodaj_kon(dane):
     try:
