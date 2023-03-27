@@ -2,10 +2,11 @@
 {% block title %}Dodaj Koszt {% endblock %}
 
 {% block content %} <h1>Dodaj Koszt</h1> 
-<form action="#" method="post">
+<form action="#" method="post" class="form-inline">
+    <div class="form-group">
     <p>Kontrahent:</p>
     <p>
-        <select>
+        <select class="form-control">
         {% for x in nazwy %}
             <option>
                 {{x[:50]}}
@@ -13,14 +14,32 @@
         {% endfor%}
         </select>
     </p>    
+    </div>
+    <div class="row">
+    <div class="col"">
+        Data wystawienia:
+        <input type="date" value={{d}} name="dw" class="form-control">
+    </div>
+    <div class="col">
+        Termin płatności:
+        <input type="date" value={{d}} name="tp" class="form-control">
+    </div>
+    <div class="col">
+        Data opłacenia:
+        <input type="date" value={{d}} name="do" class="form-control">
+    </div>
     
-    <p>Data wystawienia</p>
-    <p><input type="date" value={{d}} name="dw"></p>
-    <p>Termin płatności</p>
-    <p><input type="date" value={{d}} name="tp"></p>
-    <p>Data opłacenia</p>
-    <p><input type="date" value={{d}} name="do"></p>
-    <p><input type="submit" value="Zatwierdź"/></p>    
+    </div>
+    <br />
+    <div class="form-group row  center-block">
+        <div class="col-lg-1 center-block">
+            <button class="btn btn-outline-success" type="submit">Zatwiedź</button>  
+        </div> 
+        <div class="col-lg-1 center-block">
+            <button class="btn btn-outline-danger" type="reset">Reset</button>  
+        </div> 
+    </div>
+
 </form>
 
 {% endblock %}
