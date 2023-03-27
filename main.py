@@ -3,6 +3,7 @@ import pandas as pd
 from dane import pobierz_dane
 from dane import dodaj_kon
 from dane import pobierz_kontr 
+from dane import pobierz_nazwy
 from dane import POLA_DO_ZAPISU_KONT
 from datetime import datetime
 
@@ -43,7 +44,7 @@ def dodaj():
     return render_template("dodanof.html", nazwa=dane[0], nip = dane[1])
 
 @app.route("/danefirmy", methods=["POST", "GET"])
-def danefirmy():
+def dane_firmy():
     nip = request.args.get('nip', None)
     dane = pobierz_dane(nip)
     if request.method=="POST":
@@ -53,12 +54,26 @@ def danefirmy():
        return render_template("danef.html", dane=dane, d = datetime.today().strftime('%Y-%m-%d'))
 
 @app.route("/dodajfirme", methods=["POST", "GET"])
-def login():
+def dodaj_firme():
     if request.method=="POST":
         user = request.form["nm"]
         return redirect(url_for("danefirmy", nip=user))
     else:
         return render_template("dodajfirme.html")
+    
+@app.route("/dodajkoszt")
+def dodaj_koszt():
+        nazwy = pobierz_nazwy()
+        return render_template("koszt.html", nazwy=nazwy, d = datetime.today().strftime('%Y-%m-%d'))
+
+@app.route("/dodajprzychod")
+def dodaj_przychod():
+        nazwy = pobierz_nazwy()
+        return render_template("przychod.html", nazwy=nazwy, d = datetime.today().strftime('%Y-%m-%d'))
+
+@app.route("/dodajzus")
+def dodaj_zus():
+        return render_template("zus.html")
 
 @app.route("/<usr>")
 def user(usr):

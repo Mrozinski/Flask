@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Dodaj Przychód {% endblock %}
+
+{% block content %} <h1>Dodaj Przychód</h1> 
+
+<form action="#" method="post">
+    <p>Kontrahent:</p>
+    <p>
+        <select>
+        {% for x in nazwy %}
+            <option>
+                {{x[:50]}}
+            </option>
+        {% endfor%}
+        </select>
+    </p>    
+    
+    <p>Data wystawienia</p>
+    <p><input type="date" value={{d}} name="dw"></p>
+    <p>Termin płatności</p>
+    <p><input type="date" value={{d}} name="tp"></p>
+    <p>Data opłacenia</p>
+    <p><input type="date" value={{d}} name="do"></p>
+    <p><input type="submit" value="Zatwierdź"/></p>    
+</form>
+
+{% endblock %}

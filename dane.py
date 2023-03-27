@@ -23,6 +23,10 @@ def dodaj_kon(dane):
     f.write("\n")
     f.close()
 
+def pobierz_nazwy():
+    dane = pd.read_csv(K_FILE, sep=";") 
+    return dane['Nazwa'].values 
+
 def pobierz_dane(nip):
     # Available reports
     REPORTS = [
