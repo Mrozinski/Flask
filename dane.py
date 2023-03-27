@@ -1,6 +1,22 @@
 from RegonAPI import RegonAPI
 from RegonAPI.exceptions import ApiAuthenticationError
 
+K_FILE = "k_file.csv"
+F_file = "f_file.csv"
+POLA_DO_ZAPISU_KONT = ['Nazwa', 'Nip', 'Regon','Gmina' , 'Miejscowosc', 'KodPocztowy', 'Ulica', 'NrNieruchomosci']
+
+def dodaj_kon(dane):
+    try:
+        f = open(K_FILE, "r")
+    except:
+        f = open(K_FILE, "w")
+        f.write(';'.join(POLA_DO_ZAPISU_KONT)+"\n")
+    f.close()
+    f = open(K_FILE, "a", encoding="UTF-8")
+    line = ';'.join(dane)
+    f.write(line)
+    f.write("\n")
+    f.close()
 
 def pobierz_dane(nip):
     # Available reports
@@ -40,4 +56,5 @@ def pobierz_dane(nip):
 
     # Search by NIP
     result = api.searchData(nip=NIP)
+    print(type(result[0]))
     return result[0]
