@@ -1,2 +1,5 @@
 *.cvs
-__pycashe__/*
+__pycache__/
+*.pyc
+*.pyo
+test.py
