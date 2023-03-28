@@ -4,12 +4,12 @@
 {% block content %} <h1>Dodaj Koszt</h1> 
 <form action="#" method="post" class="form-inline">
     <div class="form-group">
-    <p>Kontrahent:</p>
+        <label for="formGroupExampleInput">Kontrahent:</label>
     <p>
         <select class="form-control">
         {% for x in nazwy %}
             <option>
-                {{x[:50]}}
+                {{x}}
             </option>
         {% endfor%}
         </select>
@@ -17,18 +17,26 @@
     </div>
     <div class="row">
     <div class="col"">
-        Data wystawienia:
+        <label for="formGroupExampleInput">Data wystawienia:</label>
         <input type="date" value={{d}} name="dw" class="form-control">
     </div>
     <div class="col">
-        Termin płatności:
+        <label for="formGroupExampleInput">Termin płatności:</label>
         <input type="date" value={{d}} name="tp" class="form-control">
     </div>
     <div class="col">
-        Data opłacenia:
+        <label for="formGroupExampleInput">Data opłacenia:</label>
         <input type="date" value={{d}} name="do" class="form-control">
     </div>
     
+    </div>
+    <div class="form-group">
+        <label for="formGroupExampleInput">Nazwa kosztu</label>
+        <input type="text" class="form-control" id="formGroupExampleInput">
+    </div>
+    <div class="form-group col-md-1"">
+        <label for="kwota">Kwota</label>
+        <input type="text" class="form-control" id="kwota">
     </div>
     <br />
     <div class="form-group row  center-block">
