@@ -39,7 +39,7 @@ def pobierz_po_nip(nip):
     res = dict(dane[dane['Nip']==nip].iloc[0])
     return(res)
 
-def pobierz_po_regon(nip):
+def pobierz_po_regon(regon):
     dane = pd.read_csv(K_FILE, sep=";") 
     res = dict(dane[dane['Regon']==regon].iloc[0])
     return(res)
