@@ -57,7 +57,7 @@ def dane_firmy():
 def dodaj_firme():
     if request.method=="POST":
         user = request.form["nm"]
-        return redirect(url_for("danefirmy", nip=user))
+        return redirect(url_for("dane_firmy", nip=user))
     else:
         return render_template("dodajfirme.html")
     

@@ -44,7 +44,7 @@ def pobierz_po_regon(regon):
     res = dict(dane[dane['Regon']==regon].iloc[0])
     return(res)
 
-def pobierz_dane(nip):
+def pobierz_dane(Nip):
     # Available reports
     REPORTS = [
         "BIR11OsFizycznaDaneOgolne",
@@ -65,7 +65,7 @@ def pobierz_dane(nip):
         "BIR11TypPodmiotu",
     ]
 
-    NIP = nip
+    NIP = Nip
 
     # Authentication
     api = RegonAPI(
