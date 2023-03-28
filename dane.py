@@ -29,6 +29,21 @@ def pobierz_nazwy():
     dane = pd.read_csv(K_FILE, sep=";") 
     return dane['Nazwa'].values 
 
+def pobierz_po_nazwie(nazwa):
+    dane = pd.read_csv(K_FILE, sep=";") 
+    res = dict(dane[dane['Nazwa']==nazwa].iloc[0])
+    return(res)
+
+def pobierz_po_nip(nip):
+    dane = pd.read_csv(K_FILE, sep=";") 
+    res = dict(dane[dane['Nip']==nip].iloc[0])
+    return(res)
+
+def pobierz_po_regon(nip):
+    dane = pd.read_csv(K_FILE, sep=";") 
+    res = dict(dane[dane['Regon']==regon].iloc[0])
+    return(res)
+
 def pobierz_dane(nip):
     # Available reports
     REPORTS = [
