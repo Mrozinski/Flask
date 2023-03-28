@@ -2,6 +2,8 @@ from RegonAPI import RegonAPI
 from RegonAPI.exceptions import ApiAuthenticationError
 import pandas as pd
 
+from secure.gus_api_key import GUS_API_KEY
+
 K_FILE = "dane\k_file.csv"
 F_file = "f_file.csv"
 POLA_DO_ZAPISU_KONT = ['Nazwa', 'Nip', 'Regon','Gmina' , 'Miejscowosc', 'KodPocztowy', 'Ulica', 'NrNieruchomosci', 'data_dodania']
@@ -48,7 +50,6 @@ def pobierz_dane(nip):
         "BIR11TypPodmiotu",
     ]
 
-    TEST_API_KEY = "a379ed7d123946f0a9b8"
     NIP = nip
 
     # Authentication
@@ -56,7 +57,7 @@ def pobierz_dane(nip):
         bir_version="bir1.1", is_production=True, timeout=10, operation_timeout=10
     )
     try:
-        api.authenticate(key=TEST_API_KEY)
+        api.authenticate(key=GUS_API_KEY)
     except ApiAuthenticationError as e:
         print("[-]", e)
         exit(0)
